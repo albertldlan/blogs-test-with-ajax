@@ -1,5 +1,5 @@
 <% content_for :title do %>Profile for <%= @user.username %><% end %>
-<div class="row"><h1 class="pull-left"><%= @user.username %></h3><% if current_user.id == @user.id %><%= link_to "Edit Information", edit_user_registration_path, :class => "pull-right btn" %><% end %></div>
+<div class="row"><h1 class="pull-left"><%= @user.username %></h3><% if current_user != nil and current_user.id == @user.id %><%= link_to "Edit Information", edit_user_registration_path, :class => "pull-right btn" %><% end %></div>
 <h3>Blogs Owned</h3>
 <table class="table table-bordered table-hover">
 	<thead>

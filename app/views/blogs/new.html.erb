@@ -1,0 +1,13 @@
+<% content_for :title do %>Create New Blog<% end %>
+
+<div class="offset3">
+<h1 class="offset1">Create a Blog</h1>
+<%= simple_form_for(@blog) do |f| %>
+<%= f.input :name, :input_html => {:style=> 'width: 450px'} %>
+<%= f.input :description, :input_html => {:style => 'width: 450px; height:75px'} %>
+<% if current_user != nil %>
+<%= f.hidden_field :user_id, :value => "#{current_user.id}" %>
+<% end %>
+<%= f.button :submit, "Create Blog", :class => "btn btn-primary offset2" %>
+<% end %>
+</div>

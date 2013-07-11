@@ -1,0 +1,8 @@
+/* Add the new comment to the top of the comments list */
+$("#comments").prepend("<%= escape_javascript(render(@message)) %>");
+ 
+/* Reset the comment form */
+$("#new_message")[0].reset();
+
+/* Replace the count of comments */
+$("#comments_count").html("<%= pluralize(@messages.count, 'Comment') %>");

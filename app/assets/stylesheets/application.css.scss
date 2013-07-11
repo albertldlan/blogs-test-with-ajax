@@ -1,0 +1,50 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+@import "bootstrap";
+
+.or{
+	color:white;
+}
+
+#logo{
+	font-size:250%;
+}
+
+.navbar-inner{
+	padding:10px;
+}
+
+.comment-box{
+	padding:10px;
+	margin-bottom: 10px;
+	background-color:#EDEFF4;
+	border-radius:15px;
+}
+
+.comment-box p:nth-child(1){
+	font-weight:bold;
+}
+
+.comment-box p:nth-child(2){
+	margin-left:15px;
+}
+
+.blog-title span{
+	float:right;
+}
+
+.blog-title p{
+	margin-top:50px;
+	margin-bottom:50px;
+}

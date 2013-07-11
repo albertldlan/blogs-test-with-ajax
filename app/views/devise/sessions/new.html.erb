@@ -1,0 +1,17 @@
+<% content_for :title do %>Log In<% end %>
+  <div class="form-inputs offset4">
+  	<% if flash[:notice] %>
+  	<%= flash[:notice] %>
+  	<% end %>
+  	<h2>Log In</h2>
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <%= f.label "Username or Email" %>
+		<%= f.text_field :login, :required => false, :autofocus => true %>
+    <%= f.input :password, :required => false %>
+    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+    <%= f.button :submit, "Sign in", :class => "btn btn-primary" %>
+ 	</div>
+ 	 		<% end %>
+ 	<div class="offset4">
+		<%= render "devise/shared/links" %>
+  </div>

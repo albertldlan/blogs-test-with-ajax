@@ -1,0 +1,4 @@
+<% @post.messages.order("id desc").each do |comment| %>
+	<div class="comment-box"><p><%= link_to("#{comment.user.username}", comment.user) %> said <%= time_ago_in_words(comment.created_at) %> ago:</p>
+	<p><%= comment.message %></p></div>
+<% end %>

@@ -1,0 +1,32 @@
+<% content_for :title do %>Profile for <%= @user.username %><% end %>
+<div class="row"><h1 class="pull-left"><%= @user.username %></h3><% if current_user.id == @user.id %><%= link_to "Edit Information", edit_user_registration_path, :class => "pull-right btn" %><% end %></div>
+<h3>Blogs Owned</h3>
+<table class="table table-bordered table-hover">
+	<thead>
+		<th>Name</th>
+		<th>Description</th>
+	</thead>
+	<tbody>
+	<% @user.blogs.each do |blog| %>
+		<tr>
+			<td><%= link_to "#{blog.name}", blog %></td>
+			<td><%= blog.description %></td>
+		</tr>
+	</tbody>
+	<% end %>
+</table>
+<h3>Posts Authored</h3>
+<table class="table table-bordered table-hover">
+	<thead>
+		<th>Title</th>
+		<th>Blog</th>
+	</thead>
+	<tbody>
+	<% @user.posts.each do |post| %>
+	<tr>
+		<td><%= link_to "#{post.title}", post %></td>
+		<td><%= link_to "#{post.blog.name}", post.blog %></td>
+	</tr>
+	<% end %>
+	</tbody>
+</table>

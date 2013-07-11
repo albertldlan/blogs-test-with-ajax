@@ -1,0 +1,22 @@
+<% content_for :title do %>Owners for <%= @blog.name %><% end %>
+<h1>Owners for <%= @blog.name %></h1>
+<table class="table table-hover table-bordered">
+	<thead>
+		<th>User</th>
+		<th>Owner?</th>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= link_to "#{user.username}", user %></td>
+			<td>
+				<% if user.owners.where(blog_id: params[:blog_id]).empty? %>
+				<%= link_to('Add as Owner', add_owner_blogs_path(user_id: user.id, blog_id: params[:blog_id]), :class => "btn btn-small") %>
+				<% else %>
+				<a class="btn btn-small disabled">Owner</a>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

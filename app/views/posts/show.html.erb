@@ -1,0 +1,24 @@
+<% content_for :title do %><%= @post.title %><% end %>
+
+<h4><%= link_to "#{@post.blog.name}", blog_path(@post.blog.id) %></h4>
+<div class="blog-title">
+	<h1><%= @post.title %></h1>
+	<span><strong>Posted by: </strong><%= link_to "#{@post.user.username}", user_path(@post.user.id) %></span>
+	<p><%= @post.content %></p>
+</div>
+<% if current_user != nil %>
+<div class="offset3">
+<%= simple_form_for [@post, @message], :remote =>  true do |f| %>
+<%= f.input :message, :label => "Leave a Comment",:input_html => {:style => 'width: 450px; height:75px'} %>
+<%= f.hidden_field :user_id, :value => "#{current_user.id}" %>
+<%= f.hidden_field :post_id, :value => "#{@post.id}" %>
+<%= f.button :submit, "Add Comment", :class => "btn btn-primary offset4" %>
+<% end %>
+<% end %>
+</div>
+<div class="container">
+<span id="comments_count"><%= pluralize(@post.messages.count, "Comment") %></span>
+<div id="comments">
+	<%= render :partial => "message" %>
+</div>
+</div>

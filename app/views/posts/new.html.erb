@@ -1,0 +1,11 @@
+<% content_for :title do %>Add New Post<% end %>
+<div class="offset2">
+	<h1 class="offset2">Add New Post</h1>
+	<%= simple_form_for @post, :url => blog_posts_path, :method => :post do |f| %>
+	<%= f.input :title, :input_html => {:style=> 'width: 600px'} %>
+	<%= f.input :content, :input_html => {:style => 'width: 600px; height:600px'} %>
+	<%= f.hidden_field :user_id, :value => "#{current_user.id}" %>
+	<%= f.hidden_field :blog_id, :value => "#{session[:blog][:id]}" %>
+	<%= f.button :submit, "Add Post", :class => "btn btn-primary offset3" %>
+	<% end %>
+</div>

@@ -5,7 +5,7 @@
 	<%= f.input :title, :input_html => {:style=> 'width: 600px'} %>
 	<%= f.input :content, :input_html => {:style => 'width: 600px; height:600px'} %>
 	<%= f.hidden_field :user_id, :value => "#{current_user.id}" %>
-	<%= f.hidden_field :blog_id, :value => "#{session[:blog][:id]}" %>
+	<%= f.hidden_field :blog_id, :value => "#{params[:blog_id]}" %>
 	<%= f.button :submit, "Add Post", :class => "btn btn-primary offset3" %>
 	<% end %>
 </div>

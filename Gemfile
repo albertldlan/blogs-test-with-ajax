@@ -4,9 +4,13 @@ gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :development do
+	gem 'sqlite3'
+end
 
-gem 'sqlite3'
-
+group :production do
+	gem 'pg'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -39,5 +43,5 @@ gem 'bcrypt-ruby', '~> 3.0.0'
  gem 'hirb'
  gem 'simple_form'
  gem 'bootstrap-sass'
- gem 'rails-footnotes'
+ # gem 'rails-footnotes'
  gem 'devise', '~> 2.2.4'

@@ -1,5 +1,5 @@
 <% content_for :title do %>Owners for <%= @blog.name %><% end %>
-<h1>Owners for <%= @blog.name %></h1>
+<h1>Owners for <%= link_to "#{@blog.name}", blog_path(@blog.id) %></h1>
 <table class="table table-hover table-bordered">
 	<thead>
 		<th>User</th>

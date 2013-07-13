@@ -1,0 +1,14 @@
+/* Replace text of comment with a textarea */
+$('#edit_<%= @message.id %>').parent().prev().html("\
+	<form id='editing_<%= @message.id %>' action='/messages/<%= @message.id %>' method='post' data-remote='true'>\
+		<input type='hidden' name='id' value='<%= @message.id %>' />\
+		<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>' />\
+		<input type='hidden' name='_method' value='put' />\
+		<textarea name='message[message]'><%= @message.message %></textarea><br />\
+		<input type='submit' value='Save' />\
+		<input class='cancel-btn' type='button' value='Cancel' />\
+	</form>");
+
+$(".cancel-btn").click(function(){
+	$(this).parent().html("<%= @message.message %>");
+});

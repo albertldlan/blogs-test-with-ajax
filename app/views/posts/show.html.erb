@@ -2,10 +2,10 @@
 
 <h4><%= link_to "#{@post.blog.name}", blog_path(@post.blog.id) %></h4>
 <div class="blog-title">
-	<h1><%= @post.title %></h1>
-	<span><strong>Posted by: </strong><%= link_to "#{@post.user.username}", user_path(@post.user.id) %></span>
-	<p><%= @post.content %></p>
+	<h1 class="pull-left"><%= @post.title %></h1>
+	<span class="pull-right"><strong>Posted by: </strong><%= link_to "#{@post.user.username}", user_path(@post.user.id) %></span>
 </div>
+<div class="posts-content"><p><%= simple_format @post.content %></p></div>
 <% if current_user != nil %>
 <div class="offset3">
 <%= simple_form_for [@post, @message], :remote =>  true do |f| %>
@@ -18,7 +18,6 @@
 </div>
 <div class="container">
 <span id="comments_count"><%= pluralize(@post.messages.count, "Comment") %></span>
-<div id="comments">
-	<%= render :partial => "message" %>
-</div>
+<div id="comments"></div>
+<%= render :partial => "messages" %>
 </div>

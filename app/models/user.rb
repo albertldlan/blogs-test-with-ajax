@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :messages, :dependent => :destroy
   has_many :blogs, through: :owners
 
+  validates :username, presence:true, uniqueness:true
+
   def self.find_first_by_auth_conditions(warden_conditions)
   conditions = warden_conditions.dup
 	  if login = conditions.delete(:login)

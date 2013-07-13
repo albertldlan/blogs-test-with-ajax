@@ -1,0 +1,11 @@
+<% @post.messages.order("id desc").each do |comment| %>
+	<div id="comment_<%= comment.id %>" class="comment-box">
+		<p><%= link_to("#{comment.user.username}", comment.user) %> said <%= time_ago_in_words(comment.created_at) %> ago:</p>
+		<%= simple_format comment.message %>
+	<% if current_user and comment.user.id == current_user.id %>
+		<p><%= link_to "Delete", message_path(comment), :method => :delete, :remote => true %>
+				<%= link_to "Edit", edit_message_path(comment), :remote => true, :class => "comment-edit", :id => "edit_#{comment.id}" %>
+		</p>
+	<% end %>
+	</div>
+<% end %>

@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
-  def index
-  end
-
+  
   def new
     @post = Post.new
   end
@@ -16,9 +14,12 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
+    post = Post.update(params[:id], params[:post])
+    redirect_to post.blog
   end
 
   def show
@@ -31,5 +32,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    Post.find(params[:id]).destroy
+    redirect_to :back
   end
 end

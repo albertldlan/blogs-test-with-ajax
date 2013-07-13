@@ -1,0 +1,5 @@
+/* Remove comment */
+$("#comment_<%= @message.id %>").remove();
+
+/* Replace the count of comments */
+$("#comments_count").html("<%= pluralize(@messages.count, 'Comment') %>");

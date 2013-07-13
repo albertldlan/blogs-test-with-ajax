@@ -1,2 +1,8 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1>Edit <%= @post.title %></h1>
+<div class="offset4">
+<%= simple_form_for(@post) do |f| %>
+<%= f.input :title, :value => @post.title %>
+<%= f.input :content, :value => @post.content %>
+<%= f.button :submit, :class => "btn btn-success" %>
+<% end %>
+</div>

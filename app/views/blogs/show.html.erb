@@ -2,13 +2,14 @@
 <div class="pull-right">
 	<% if current_user != nil %>
 		<% @blog.owners.each do |owner| %>
-			<% if owner.user_id == current_user.id %><%= link_to "Owners", blog_owners_path(:blog_id => params[:id]), :class => "pull-left btn" %><% end %>
+			<% if owner.user_id == current_user.id %><%= link_to "Owners", blog_owners_path(:blog_id => params[:id]), :class => "pull-left btn owners" %><% end %>
 		<% end %>
 	<% end %>
 </div>
-<div>
+<div class="blog-info">
 	<h1><%= @blog.name %></h1>
-	<h4><%= @blog.description %></h4>
+	<span><%= simple_format @blog.description %></span>
+	<span class="pull-right"><%= link_to "Edit Blog Information", edit_blog_path(@blog) %></span>
 </div>
 <div><h3 class="pull-left">Posts</h3>
 <% if current_user != nil %>
@@ -16,18 +17,35 @@
 		<% if owner.user_id == current_user.id %><%= link_to "Add New Post", new_blog_post_path(:blog_id => params[:id]), :class => "pull-right btn btn-success" %><% end %>
 	<% end %>
 	<% end %>
-<table class="table table-hover">
+	</div>
+	<% if @blog.posts.count == 0 %>
+	<div class="no-posts"><%= "There are no posts here to show! Why not add one?" %></div>
+	<% else %>
+<table class="table table-hover posts-list">
 	<thead>
 		<th>Title</th>
+		<th>Created</th>
 		<th>Author</th>
+		<th>Comments</th>
+		<th>Actions</th>
 	</thead>
 <% @blog.posts.each do |post| %>
 	<tbody>
 		<tr>
 			<td><%= link_to "#{post.title}", post_path(post.id) %></td>
+			<td><%= post.created_at.to_formatted_s(:long_ordinal) %></td>
 			<td><%= link_to "#{post.user.username}", user_path(post.user.id) %></td>
+			<td><%= pluralize(post.messages.count, "Comment") %></td>
+			<td><%= link_to "Edit", edit_post_path(post) %><%= link_to "Delete", post, :method => :delete, :confirm => "Are you sure?", :class => "post-delete" %></td>
 		</tr>
 	<% end %>
 	</tbody>
 </table>
-</div>
+<% end %>
+<% if current_user != nil %>
+	<% @blog.owners.each do |owner| %>
+		<% if owner.user_id == current_user.id %>
+		<%= link_to "Delete Blog", blog_path(@blog.id), :method => :delete, :class => "btn btn-danger pull-right", :confirm => "Are you sure? All associated posts will also be deleted!" %>
+		<% end %>
+	<% end %>
+	<% end %>

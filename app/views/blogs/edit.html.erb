@@ -1,2 +1,10 @@
-<h1>Blogs#edit</h1>
-<p>Find me in app/views/blogs/edit.html.erb</p>
+<% content_for :title do %>Edit <%= @blog.name %><% end %>
+
+<div class="offset3">
+<h1 class="offset1">Edit <%= @blog.name %></h1>
+<%= simple_form_for(@blog) do |f| %>
+<%= f.input :name, :value => @blog.name %>
+<%= f.input :description, :value => @blog.description, :input_html => {:style => 'width: 450px; height:75px'} %>
+<%= f.button :submit, :class => "btn btn-success" %>
+<% end %>
+</div>

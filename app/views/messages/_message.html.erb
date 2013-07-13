@@ -1,4 +1,9 @@
 <%= div_for message do %>
-	<div class="comment-box"><p><%= link_to("#{message.user.username}", message.user) %> said <%= time_ago_in_words(message.created_at) %> ago:</p>
-	<p><%= message.message %></p></div>
+	<div id="comment_<%= message.id %>" class="comment-box">
+		<p><%= link_to("#{message.user.username}", message.user) %> said <%= time_ago_in_words(message.created_at) %> ago:</p>
+		<%= simple_format message.message %>
+		<p><%= link_to "Delete", message_path(message), :method => :delete, :remote => true %>
+				<%= link_to "Edit", edit_message_path(message), :remote => true, :class => "comment-edit", :id => "edit_#{message.id}" %>
+		</p>
+	</div>
 <% end %>

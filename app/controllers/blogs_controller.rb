@@ -28,9 +28,12 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    @blog = Blog.find(params[:id])
   end
 
   def update
+    blog = Blog.update(params[:id], params[:blog])
+    redirect_to blog
   end
 
   def show
@@ -38,5 +41,7 @@ class BlogsController < ApplicationController
   end
 
   def destroy
+    Blog.find(params[:id]).destroy
+    redirect_to root_url
   end
 end
